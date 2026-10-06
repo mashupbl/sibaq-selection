@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIBĀQ ’26 — Programme Mentor Selection</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="header-badges">
+        <span class="badge fest-badge">Darul Huda National Arts Fest</span>
+        <span class="badge live-badge" id="live-indicator"><span class="dot"></span> Live</span>
+      </div>
+      <h1 class="site-title">SIBĀQ ’26</h1>
+      <h2 class="site-subtitle">Programme Mentor Selection</h2>
+      <p class="site-desc">Choose the programmes you are passionate about mentoring. Select your teacher code to reserve your spot.</p>
+    </div>
+  </header>
+
+  <!-- DASHBOARD STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">TOTAL PROGRAMMES</span>
+          <span class="stat-value" id="stat-total">118</span>
+        </div>
+        <div class="stat-card stat-selected">
+          <span class="stat-label">SELECTED</span>
+          <span class="stat-value" id="stat-selected">0</span>
+        </div>
+        <div class="stat-card stat-available">
+          <span class="stat-label">AVAILABLE</span>
+          <span class="stat-value" id="stat-available">118</span>
+        </div>
+        <div class="stat-card stat-progress">
+          <span class="stat-label">COMPLETION</span>
+          <span class="stat-value" id="stat-percent">0%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROLS & FILTER BAR -->
+  <main class="container main-content">
+    <div class="controls-card">
+      <!-- Search & Teacher Quick Filter -->
+      <div class="search-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" placeholder="Search programme code or name (e.g. BS1, SPEECH)..." />
+          <button id="clear-search" class="clear-btn" title="Clear search">&times;</button>
+        </div>
+
+        <div class="my-selections-box">
+          <label for="my-teacher-filter">View By Teacher:</label>
+          <div class="select-wrapper">
+            <select id="my-teacher-filter">
+              <option value="">All Selections</option>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="category-tabs" role="tablist">
+        <button class="cat-btn active" data-category="ALL">ALL PROGRAMMES</button>
+        <button class="cat-btn" data-category="BIDĀYAH">BIDĀYAH</button>
+        <button class="cat-btn" data-category="ʾŪLĀ">ʾŪLĀ</button>
+        <button class="cat-btn" data-category="THĀNIYAH">THĀNIYAH</button>
+      </div>
+
+      <!-- Section Filter Pills -->
+      <div class="section-pills" id="section-filter-container">
+        <span class="pill-label">Section:</span>
+        <button class="pill-btn active" data-section="ALL">ALL</button>
+        <button class="pill-btn" data-section="S">S — Stage</button>
+        <button class="pill-btn" data-section="N">N — Non-stage</button>
+        <button class="pill-btn" data-section="X">X — General / IT</button>
+        <button class="pill-btn" data-section="O">O — Offstage</button>
+      </div>
+
+      <!-- Sync Status & Admin Link -->
+      <div class="sync-row">
+        <span id="sync-status" class="sync-status">Checking cloud sync...</span>
+        <button id="admin-toggle-btn" class="text-link-btn">Admin Tools 🔒</button>
+      </div>
+    </div>
+
+    <!-- PROGRAMME CARDS GRID -->
+    <div class="programme-grid" id="programme-grid">
+      <!-- Cards rendered via JS -->
+    </div>
+  </main>
+
+  <!-- CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-box">
+      <h3 class="modal-title">Confirm Selection</h3>
+      <p id="confirm-modal-text" class="modal-text">Are you sure you want to select this programme?</p>
+      <div class="modal-actions">
+        <button id="modal-cancel-btn" class="btn btn-secondary">Cancel</button>
+        <button id="modal-confirm-btn" class="btn btn-primary">Confirm Selection</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN ACCESS / PIN MODAL -->
+  <div class="modal-overlay" id="admin-modal">
+    <div class="modal-box">
+      <h3 class="modal-title">Admin Management</h3>
+      <p class="modal-text">Enter Admin PIN to enable override & mentor reset mode.</p>
+      <input type="password" id="admin-pin-input" class="admin-input" placeholder="Enter PIN (Default: 2026)" />
+      <div class="modal-actions">
+        <button id="admin-close-btn" class="btn btn-secondary">Close</button>
+        <button id="admin-login-btn" class="btn btn-primary">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <footer class="site-footer">
+    <p>SIBĀQ ’26 — Darul Huda Islamic University Arts Fest</p>
+    <p class="footer-sub">Autonomous Mentor Onboarding Portal</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
