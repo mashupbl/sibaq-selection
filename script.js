@@ -4,7 +4,7 @@
  */
 const CONFIG = {
   // PASTE YOUR REAL GOOGLE APPS SCRIPT WEB APP URL HERE:
-  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbywwEIDx2KZlhjRq5EoP73NrNcbQhVLA-hK5iLUlTdtPaBdUQgYdMgqJ2ZZZTAqsEAh/exec",
+  APPS_SCRIPT_URL: "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnR8f8rmm1_cqJxGIfKUyMm7xpkbUNV-E4y_qlM98nYkeHmzmpuz9LNYSD-y2afIuhuyIJHbYWTOGfEFfTRlGdGwMpvEfw0V2LbO5RfAQLiyh5Xuv3Fdj9nAFOFB87Kdyq9HvyLrszJ60XBO0_tn7w7bV032uhlIbQJP8W7TNEVDpoALaF_3kWcYL1jvhlLXlFMThJ1bkdFjFKbqN8fveiKSePOrMXy5Yj_Jnaxa0qcc3wmRfUQ2zKDKdI4ufBuRCVhsWq77qul_mmbDXwbw4Ohrf5wdRA&lib=M6Yd9vLxJjkM7ph1ZyGJAAgcBX2ll90v-",
 
   POLL_INTERVAL_MS: 7000,
   ADMIN_PIN: "2026"
