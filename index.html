@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIBĀQ ’26 — Programme Mentor Selection</title>
+  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="header-badges">
+        <span class="badge fest-badge">Darul Huda National Arts Fest</span>
+        <span class="badge live-badge" id="live-indicator"><span class="dot"></span> Live</span>
+      </div>
+      <h1 class="site-title">SIBĀQ ’26</h1>
+      <h2 class="site-subtitle">Programme Mentor Selection</h2>
+      <p class="site-desc">Explore programme assignments across Student Mentors, Candidates, and Staff Mentors.</p>
+    </div>
+  </header>
+
+  <!-- DASHBOARD STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">TOTAL PROGRAMMES</span>
+          <span class="stat-value" id="stat-total">0</span>
+        </div>
+        <div class="stat-card stat-selected">
+          <span class="stat-label">MENTOR ASSIGNED</span>
+          <span class="stat-value" id="stat-selected">0</span>
+        </div>
+        <div class="stat-card stat-available">
+          <span class="stat-label">AVAILABLE</span>
+          <span class="stat-value" id="stat-available">0</span>
+        </div>
+        <div class="stat-card stat-progress">
+          <span class="stat-label">COMPLETION</span>
+          <span class="stat-value" id="stat-percent">0%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTROLS & MULTI-FILTER -->
+  <main class="container main-content">
+    <div class="controls-card">
+
+      <!-- Top Row: General Programme Search & Reset -->
+      <div class="search-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" placeholder="Search by programme code or name (e.g. BS1, SPEECH, QUIZ)..." />
+          <button id="clear-search" class="clear-btn" title="Clear search">&times;</button>
+        </div>
+        <button id="reset-all-btn" class="btn btn-reset">↺ Reset All Filters</button>
+      </div>
+
+      <!-- 3 Specific Entity Filters with Dual Input (Ad No / Name Search + Dropdown) -->
+      <div class="filters-grid">
+        
+        <!-- Student Mentor Filter -->
+        <div class="filter-group">
+          <label for="search-student-mentor">🎓 Student Mentor:</label>
+          <input type="text" id="search-student-mentor" class="filter-text-input" placeholder="Search Ad No or Name..." />
+          <div class="select-wrapper">
+            <select id="filter-student-mentor">
+              <option value="">All Student Mentors</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Candidate Filter -->
+        <div class="filter-group">
+          <label for="search-candidate">👤 Candidate (Ad No / Name):</label>
+          <input type="text" id="search-candidate" class="filter-text-input" placeholder="Type Ad No (e.g. 1135) or Name..." />
+          <div class="select-wrapper">
+            <select id="filter-candidate">
+              <option value="">All Candidates</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Staff Mentor Filter -->
+        <div class="filter-group">
+          <label for="filter-staff-mentor">👨‍🏫 Staff Mentor:</label>
+          <div class="select-wrapper" style="margin-top: auto;">
+            <select id="filter-staff-mentor">
+              <option value="">All Staff Mentors</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Category Navigation Tabs -->
+      <div class="category-tabs-container">
+        <span class="tab-heading">Categories:</span>
+        <div class="category-tabs" id="category-tabs" role="tablist">
+          <button class="cat-btn active" data-category="ALL">ALL PROGRAMMES</button>
+        </div>
+      </div>
+
+      <!-- Section Filter Pills -->
+      <div class="section-pills" id="section-filter-container">
+        <span class="pill-label">Section:</span>
+        <button class="pill-btn active" data-section="ALL">ALL</button>
+        <button class="pill-btn" data-section="S">S — Stage</button>
+        <button class="pill-btn" data-section="N">N — Non-stage</button>
+        <button class="pill-btn" data-section="X">X — General / IT</button>
+        <button class="pill-btn" data-section="O">O — Offstage</button>
+      </div>
+
+      <!-- Sync Status & Admin Link -->
+      <div class="sync-row">
+        <span id="sync-status" class="sync-status">Connecting to live database...</span>
+        <button id="admin-toggle-btn" class="text-link-btn">Admin Tools 🔒</button>
+      </div>
+    </div>
+
+    <!-- PROGRAMME CARDS CONTAINER -->
+    <div class="programme-grid" id="programme-grid">
+      <div id="initial-loading" class="empty-state-box">
+        <div class="spinner"></div>
+        <p>Loading latest programmes
