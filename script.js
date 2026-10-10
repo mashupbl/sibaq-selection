@@ -3,9 +3,7 @@
  * Dynamic categories, multi-filter for Student Mentors, Candidates (with Ad No/Name search), and Staff Mentors.
  */
 const CONFIG = {
-  // PASTE YOUR REAL GOOGLE APPS SCRIPT WEB APP URL HERE:
-  APPS_SCRIPT_URL: "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnR8f8rmm1_cqJxGIfKUyMm7xpkbUNV-E4y_qlM98nYkeHmzmpuz9LNYSD-y2afIuhuyIJHbYWTOGfEFfTRlGdGwMpvEfw0V2LbO5RfAQLiyh5Xuv3Fdj9nAFOFB87Kdyq9HvyLrszJ60XBO0_tn7w7bV032uhlIbQJP8W7TNEVDpoALaF_3kWcYL1jvhlLXlFMThJ1bkdFjFKbqN8fveiKSePOrMXy5Yj_Jnaxa0qcc3wmRfUQ2zKDKdI4ufBuRCVhsWq77qul_mmbDXwbw4Ohrf5wdRA&lib=M6Yd9vLxJjkM7ph1ZyGJAAgcBX2ll90v-",
-
+  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwTlqpeWhUul8XmYsD5jr59s65fUAg3UJiX4oVY2tSsJFPKk5dCquUrM_WSczZMtEkb/exec",
   POLL_INTERVAL_MS: 7000,
   ADMIN_PIN: "2026"
 };
@@ -496,7 +494,7 @@ function commitSelection(code, teacherCode) {
   populateFilterDropdowns();
   showToast(`✓ ${code} assigned to ${teacherCode}`, "success");
 
-  if (CONFIG.APPS_SCRIPT_URL && !CONFIG.APPS_SCRIPT_URL.includes("YOUR_SCRIPT_ID_HERE")) {
+  if (CONFIG.APPS_SCRIPT_URL) {
     syncStatusEl.textContent = "Syncing with cloud...";
 
     fetch(CONFIG.APPS_SCRIPT_URL, {
@@ -531,7 +529,7 @@ window.releaseAssignment = function(code) {
   populateFilterDropdowns();
   showToast(`Staff mentor removed from ${code}`, "info");
 
-  if (CONFIG.APPS_SCRIPT_URL && !CONFIG.APPS_SCRIPT_URL.includes("YOUR_SCRIPT_ID_HERE")) {
+  if (CONFIG.APPS_SCRIPT_URL) {
     fetch(CONFIG.APPS_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
@@ -568,12 +566,9 @@ function updateCardVisualState(code, teacherCode) {
 }
 
 function fetchCloudState() {
-  if (!CONFIG.APPS_SCRIPT_URL || CONFIG.APPS_SCRIPT_URL.includes("YOUR_SCRIPT_ID_HERE")) {
-    syncStatusEl.textContent = "Local preview mode";
-    return;
-  }
+  if (!CONFIG.APPS_SCRIPT_URL) return;
 
-  fetch(`${CONFIG.APPS_SCRIPT_URL}?action=GET_STATE`)
+  fetch(CONFIG.APPS_SCRIPT_URL)
     .then(res => res.json())
     .then(data => {
       if (data && data.status === "success" && Array.isArray(data.programmes)) {
